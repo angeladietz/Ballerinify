@@ -15,6 +15,7 @@
 		89E6FFC72463360800D8AFD8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89E6FFC52463360800D8AFD8 /* LaunchScreen.storyboard */; };
 		89E6FFD22463360A00D8AFD8 /* BallerinifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E6FFD12463360A00D8AFD8 /* BallerinifyTests.swift */; };
 		89E6FFDD2463360A00D8AFD8 /* BallerinifyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E6FFDC2463360A00D8AFD8 /* BallerinifyUITests.swift */; };
+		FA049F4A97E0B3A3FA0C4A9C /* Pods_Ballerinify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D78481422B4E93B35E1739F1 /* Pods_Ballerinify.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3C4CAA8587644EE4B5788A45 /* Pods-Ballerinify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ballerinify.debug.xcconfig"; path = "Target Support Files/Pods-Ballerinify/Pods-Ballerinify.debug.xcconfig"; sourceTree = "<group>"; };
+		68260EC03AC538262E2D9F2B /* Pods-Ballerinify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ballerinify.release.xcconfig"; path = "Target Support Files/Pods-Ballerinify/Pods-Ballerinify.release.xcconfig"; sourceTree = "<group>"; };
 		89E6FFB7246335FB00D8AFD8 /* Ballerinify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ballerinify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89E6FFBA246335FB00D8AFD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89E6FFBC246335FB00D8AFD8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +52,7 @@
 		89E6FFD82463360A00D8AFD8 /* BallerinifyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BallerinifyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		89E6FFDC2463360A00D8AFD8 /* BallerinifyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallerinifyUITests.swift; sourceTree = "<group>"; };
 		89E6FFDE2463360A00D8AFD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D78481422B4E93B35E1739F1 /* Pods_Ballerinify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ballerinify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA049F4A97E0B3A3FA0C4A9C /* Pods_Ballerinify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +81,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		17998E8A3918E17EB18E4401 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D78481422B4E93B35E1739F1 /* Pods_Ballerinify.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5C927920492C9B7C0396F94C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3C4CAA8587644EE4B5788A45 /* Pods-Ballerinify.debug.xcconfig */,
+				68260EC03AC538262E2D9F2B /* Pods-Ballerinify.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		89E6FFAE246335FB00D8AFD8 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +106,8 @@
 				89E6FFD02463360900D8AFD8 /* BallerinifyTests */,
 				89E6FFDB2463360A00D8AFD8 /* BallerinifyUITests */,
 				89E6FFB8246335FB00D8AFD8 /* Products */,
+				5C927920492C9B7C0396F94C /* Pods */,
+				17998E8A3918E17EB18E4401 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,6 +160,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 89E6FFE12463360A00D8AFD8 /* Build configuration list for PBXNativeTarget "Ballerinify" */;
 			buildPhases = (
+				645CFEF7DCAB9E4986DAFED3 /* [CP] Check Pods Manifest.lock */,
 				89E6FFB3246335FB00D8AFD8 /* Sources */,
 				89E6FFB4246335FB00D8AFD8 /* Frameworks */,
 				89E6FFB5246335FB00D8AFD8 /* Resources */,
@@ -253,6 +279,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		645CFEF7DCAB9E4986DAFED3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Ballerinify-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		89E6FFB3246335FB00D8AFD8 /* Sources */ = {
@@ -432,6 +483,7 @@
 		};
 		89E6FFE22463360A00D8AFD8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C4CAA8587644EE4B5788A45 /* Pods-Ballerinify.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -450,6 +502,7 @@
 		};
 		89E6FFE32463360A00D8AFD8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68260EC03AC538262E2D9F2B /* Pods-Ballerinify.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
