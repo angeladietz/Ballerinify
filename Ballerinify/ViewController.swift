@@ -33,6 +33,7 @@ final class ViewController: UIViewController {
 //  var delegate: Delegates = Constants.defaultDelegate
     @IBOutlet weak var feedUnavailableLabel: UILabel!
     
+    
   // MARK: Result Variables
   // Inferenced data to render.
   private var inferencedData: InferencedData?
