@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qNQ-bB-dAP">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -13,30 +13,34 @@
             <objects>
                 <viewController id="qNQ-bB-dAP" customClass="ViewController" customModule="Ballerinify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BDe-mz-CtR">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lwh-hH-AWb" userLabel="PreviewView" customClass="PreviewView" customModule="Ballerinify" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="169" width="414" height="727"/>
+                                <rect key="frame" x="0.0" y="125" width="375" height="542"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kUG-Cp-xT8" userLabel="ModelView" customClass="ModelView" customModule="Ballerinify" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="375"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kUG-Cp-xT8" userLabel="ModelView" customClass="ModelView" customModule="Ballerinify" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="kUG-Cp-xT8" secondAttribute="trailing" id="DLg-1v-u97"/>
+                                    <constraint firstItem="kUG-Cp-xT8" firstAttribute="leading" secondItem="lwh-hH-AWb" secondAttribute="leading" id="GHN-78-IRk"/>
+                                    <constraint firstItem="kUG-Cp-xT8" firstAttribute="top" secondItem="lwh-hH-AWb" secondAttribute="top" id="ytl-qN-6j4"/>
+                                </constraints>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera feed unavailable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hc-FW-dcM">
-                                <rect key="frame" x="113" y="354" width="188" height="21"/>
+                                <rect key="frame" x="93.5" y="310" width="188" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GjO-MQ-blF" userLabel="TopView">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="169"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ballerinify" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBi-l9-Tij">
-                                        <rect key="frame" x="77" y="75.5" width="260.5" height="62"/>
+                                        <rect key="frame" x="57.5" y="31.5" width="260.5" height="62"/>
                                         <viewLayoutGuide key="safeArea" id="d2Y-2t-krS"/>
                                         <fontDescription key="fontDescription" name="Optima-ExtraBlack" family="Optima" pointSize="50"/>
                                         <color key="textColor" name="DarkPink"/>
@@ -51,10 +55,10 @@
                                 <viewLayoutGuide key="safeArea" id="5Aj-AW-LFq"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0v7-Gc-J3W" userLabel="BottomView">
-                                <rect key="frame" x="0.0" y="544" width="414" height="352"/>
+                                <rect key="frame" x="0.0" y="500" width="375" height="167"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hmm, I'm not sure what position that is, try another one!" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3K-mf-y87">
-                                        <rect key="frame" x="40" y="20" width="334" height="96.5"/>
+                                        <rect key="frame" x="40" y="20" width="295" height="96.5"/>
                                         <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="27"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -80,6 +84,7 @@
                             <constraint firstAttribute="bottom" secondItem="0v7-Gc-J3W" secondAttribute="bottom" id="Nwv-NH-VwW"/>
                             <constraint firstItem="GjO-MQ-blF" firstAttribute="top" secondItem="BDe-mz-CtR" secondAttribute="top" id="Og4-Y8-6Jg"/>
                             <constraint firstItem="lwh-hH-AWb" firstAttribute="top" secondItem="GjO-MQ-blF" secondAttribute="bottom" id="TLm-Nv-Jlt"/>
+                            <constraint firstItem="0v7-Gc-J3W" firstAttribute="top" secondItem="kUG-Cp-xT8" secondAttribute="bottom" id="bVr-XD-xbk"/>
                             <constraint firstItem="4hc-FW-dcM" firstAttribute="centerX" secondItem="2fS-wz-OeH" secondAttribute="centerX" id="fvQ-JT-LyK"/>
                             <constraint firstItem="0v7-Gc-J3W" firstAttribute="top" secondItem="2fS-wz-OeH" secondAttribute="top" constant="500" id="kU5-OZ-HBQ"/>
                             <constraint firstItem="lwh-hH-AWb" firstAttribute="bottom" secondItem="BDe-mz-CtR" secondAttribute="bottom" id="lz2-j9-gwS"/>
