@@ -1,8 +1,8 @@
 # Ballerinify
 
-*Ballerinify* is an iOS app developed by two current Software Engineering students and former ballerinas back in their prime.
+*Ballerinify* is an iOS app developed by two current Software Engineering students and former ballerinas.
 
-*Ballerinify* watches a person in real-time and uses machine learning to detect key points on a person's body, and classify the dance position that the user is in.
+*Ballerinify* watches the user in real-time to classify the dance position the user is in. The app uses machine learning to map key points on the user's body.
 
 ## Technologies Used
 - **Swift**
