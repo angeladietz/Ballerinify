@@ -18,6 +18,12 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lwh-hH-AWb" userLabel="PreviewView" customClass="PreviewView" customModule="Ballerinify" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="169" width="414" height="727"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kUG-Cp-xT8" userLabel="ModelView" customClass="ModelView" customModule="Ballerinify" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="375"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera feed unavailable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hc-FW-dcM">
@@ -85,12 +91,13 @@
                     <connections>
                         <outlet property="PositionNameTextbox" destination="k3K-mf-y87" id="fEu-dV-OPU"/>
                         <outlet property="feedUnavailableLabel" destination="4hc-FW-dcM" id="x9S-cJ-NqN"/>
+                        <outlet property="modelView" destination="kUG-Cp-xT8" id="glG-Ro-b8P"/>
                         <outlet property="previewView" destination="lwh-hH-AWb" id="qcY-gj-rFI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MIQ-1w-C9K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-253.59999999999999" y="99.400299850074973"/>
+            <point key="canvasLocation" x="-253.62318840579712" y="99.107142857142847"/>
         </scene>
     </scenes>
     <resources>

@@ -280,6 +280,7 @@ class ModelDataHandler{
     private func sigmoid(_ x: Float32) -> Float32 {
       return (1.0 / (1.0 + exp(-x)))
     }
+}
     
     // MARK: - Data types for inference result
     struct KeyPoint {
@@ -358,5 +359,3 @@ class ModelDataHandler{
       static let output = (batchSize: 1, height: 9, width: 9, keypointSize: 17, offsetSize: 34)
       static let isQuantized = false
     }
-}
-

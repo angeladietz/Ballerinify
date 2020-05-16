@@ -19,17 +19,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import AVFoundation
+import Accelerate
+import CoreImage
+import Foundation
+import TensorFlowLite
 import UIKit
-//import SwiftUI
 import os
 
 final class ViewController: UIViewController {
   // MARK: Storyboards Connections
     
     @IBOutlet weak var previewView: PreviewView!
+    
+    @IBOutlet weak var modelView: ModelView!
+    
   // MARK: ModelDataHandler traits
-//  var threadCount: Int = Constants.defaultThreadCount
+    var threadCount: Int = Constants.defaultThreadCount
 //  var delegate: Delegates = Constants.defaultDelegate
     @IBOutlet weak var feedUnavailableLabel: UILabel!
     
@@ -42,8 +47,8 @@ final class ViewController: UIViewController {
   // Minimum score to render the result.
   private let minimumScore: Float = 0.5
 
-  // Relative location of `overlayView` to `previewView`.
-//  private var overlayViewFrame: CGRect?
+  // Relative location of `movelView` to `previewView`.
+  private var modelViewFrame: CGRect?
 
   private var previewViewFrame: CGRect?
 
@@ -52,25 +57,21 @@ final class ViewController: UIViewController {
   private lazy var cameraCapture = CameraFeedManager(previewView: previewView)
 
   // Handles all data preprocessing and makes calls to run inference.
-//  private var modelDataHandler: ModelDataHandler?
-
-//    private var danceAnalyzer: DanceAnalyzer? = DanceAnalyzer()
+    private var modelDataHandler: ModelDataHandler?
 
   // MARK: View Handling Methods
   override func viewDidLoad() {
     super.viewDidLoad()
 
-//    do {
-//      modelDataHandler = try ModelDataHandler()
-//    } catch let error {
-//      fatalError(error.localizedDescription)
-//    }
+    do {
+      modelDataHandler = try ModelDataHandler()
+    } catch let error {
+      fatalError(error.localizedDescription)
+    }
 
     cameraCapture.delegate = self
 //    tableView.delegate = self
 //    tableView.dataSource = self
-
-    // MARK: UI Initialization
 
   }
 
@@ -85,7 +86,7 @@ final class ViewController: UIViewController {
   }
 
   override func viewDidLayoutSubviews() {
-//    overlayViewFrame = overlayView.frame
+    modelViewFrame = modelView.frame
     previewViewFrame = previewView.frame
   }
 
@@ -104,7 +105,7 @@ final class ViewController: UIViewController {
 // MARK: - CameraFeedManagerDelegate Methods
 extension ViewController: CameraFeedManagerDelegate {
   func cameraFeedManager(_ manager: CameraFeedManager, didOutput pixelBuffer: CVPixelBuffer) {
-//    runModel(on: pixelBuffer)
+    runModel(on: pixelBuffer)
   }
 
   // MARK: Session Handling Alerts
@@ -161,48 +162,52 @@ extension ViewController: CameraFeedManagerDelegate {
     present(alertController, animated: true, completion: nil)
   }
 
-//  @objc func runModel(on pixelBuffer: CVPixelBuffer) {
-//    guard let overlayViewFrame = overlayViewFrame, let previewViewFrame = previewViewFrame
-//    else {
-//      return
-//    }
-//    // To put `overlayView` area as model input, transform `overlayViewFrame` following transform
-//    // from `previewView` to `pixelBuffer`. `previewView` area is transformed to fit in
-//    // `pixelBuffer`, because `pixelBuffer` as a camera output is resized to fill `previewView`.
-//    // https://developer.apple.com/documentation/avfoundation/avlayervideogravity/1385607-resizeaspectfill
-//    let modelInputRange = overlayViewFrame.applying(
-//      previewViewFrame.size.transformKeepAspect(toFitIn: pixelBuffer.size))
-//
-//    // Run PoseNet model.
-//    guard
-//      let (result, times) = self.modelDataHandler?.runPoseNet(
-//        on: pixelBuffer,
-//        from: modelInputRange,
-//        to: overlayViewFrame.size)
-//    else {
-//      os_log("Cannot get inference result.", type: .error)
-//      return
-//    }
-//
-//    // Udpate `inferencedData` to render data in `tableView`.
-//    inferencedData = InferencedData(score: result.score, times: times)
-//
-//    // Draw result.
-//    DispatchQueue.main.async {
-//      self.tableView.reloadData()
-//      // If score is too low, clear result remaining in the overlayView.
-//      if result.score < self.minimumScore {
-//        self.clearResult()
-//        return
-//      }
+  @objc func runModel(on pixelBuffer: CVPixelBuffer) {
+    guard let modelViewFrame = modelViewFrame, let previewViewFrame = previewViewFrame
+    else {
+      return
+    }
+    // To put `modelView` area as model input, transform `modelViewFrame` following transform
+    // from `previewView` to `pixelBuffer`. `previewView` area is transformed to fit in
+    // `pixelBuffer`, because `pixelBuffer` as a camera output is resized to fill `previewView`.
+    // https://developer.apple.com/documentation/avfoundation/avlayervideogravity/1385607-resizeaspectfill
+    let modelInputRange = modelViewFrame.applying(
+      modelViewFrame.size.transformKeepAspect(toFitIn: pixelBuffer.size))
+
+//    let viewFrameSize = CGSize(width: 375, height: 375)
+    
+    // Run PoseNet model.
+    guard
+      let (result, times) = self.modelDataHandler?.runPoseNet(
+        on: pixelBuffer,
+        from: modelInputRange,
+        to: modelViewFrame.size)
+    else {
+      os_log("Cannot get inference result.", type: .error)
+      return
+    }
+
+    // Udpate `inferencedData` to render data in `tableView`.
+    inferencedData = InferencedData(score: result.score, times: times)
+
+    
+    
+    // Draw result.
+    DispatchQueue.main.async {
+      //self.tableView.reloadData()
+      // If score is too low, clear result remaining in the overlayView.
+      if result.score < self.minimumScore {
+        print("Not good enough")
+        return
+      }
+        print("great!")
 //        var pose = self.danceAnalyzer?.identifyPose(result: result)
 //        self.positionNameLabel.text = pose
 //      self.drawResult(of: result)
-//    }
-//
-//    //TODO: set the position label here
-//  }
-
+        
+        //TODO: set the position label here
+    }
+  }
 }
 
 //extension ViewController : UIViewControllerRepresentable{
@@ -285,7 +290,7 @@ fileprivate enum Traits {
 
 fileprivate struct InferencedData {
   var score: Float
-//  var times: Times
+  var times: Times
 }
 
 /// Type of sections in Info Cell
