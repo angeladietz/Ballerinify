@@ -11,22 +11,26 @@
         <!--View Controller-->
         <scene sceneID="hee-0W-LEu">
             <objects>
-                <viewController id="qNQ-bB-dAP" sceneMemberID="viewController">
+                <viewController id="qNQ-bB-dAP" customClass="ViewController" customModule="Ballerinify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BDe-mz-CtR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera feed unavailable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hc-FW-dcM">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lwh-hH-AWb" userLabel="PreviewView" customClass="PreviewView" customModule="Ballerinify" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="169" width="414" height="727"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera feed unavailable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hc-FW-dcM">
                                 <rect key="frame" x="113" y="354" width="188" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GjO-MQ-blF">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GjO-MQ-blF" userLabel="TopView">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="169"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dance Pose" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBi-l9-Tij">
-                                        <rect key="frame" x="61.5" y="75.5" width="291" height="62"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ballerinify" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBi-l9-Tij">
+                                        <rect key="frame" x="77" y="75.5" width="260.5" height="62"/>
                                         <viewLayoutGuide key="safeArea" id="d2Y-2t-krS"/>
                                         <fontDescription key="fontDescription" name="Optima-ExtraBlack" family="Optima" pointSize="50"/>
                                         <color key="textColor" name="DarkPink"/>
@@ -40,7 +44,7 @@
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="5Aj-AW-LFq"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0v7-Gc-J3W">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0v7-Gc-J3W" userLabel="BottomView">
                                 <rect key="frame" x="0.0" y="544" width="414" height="352"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hmm, I'm not sure what position that is, try another one!" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3K-mf-y87">
@@ -50,7 +54,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" name="LightPink"/>
+                                <color key="backgroundColor" name="LightPink_70"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="k3K-mf-y87" secondAttribute="trailing" constant="40" id="TJd-tW-EhO"/>
                                     <constraint firstItem="k3K-mf-y87" firstAttribute="top" secondItem="0v7-Gc-J3W" secondAttribute="top" constant="20" id="UvW-C9-JQX"/>
@@ -63,16 +67,26 @@
                             <constraint firstItem="0v7-Gc-J3W" firstAttribute="leading" secondItem="2fS-wz-OeH" secondAttribute="leading" id="0gQ-3W-8HA"/>
                             <constraint firstItem="GjO-MQ-blF" firstAttribute="leading" secondItem="2fS-wz-OeH" secondAttribute="leading" id="1EO-Le-Mif"/>
                             <constraint firstItem="0v7-Gc-J3W" firstAttribute="centerX" secondItem="2fS-wz-OeH" secondAttribute="centerX" id="8g7-GZ-4rx"/>
+                            <constraint firstItem="lwh-hH-AWb" firstAttribute="centerX" secondItem="0v7-Gc-J3W" secondAttribute="centerX" id="Ar4-el-Uco"/>
                             <constraint firstItem="4hc-FW-dcM" firstAttribute="top" secondItem="GjO-MQ-blF" secondAttribute="bottom" constant="185" id="JTp-Ob-tag"/>
+                            <constraint firstItem="lwh-hH-AWb" firstAttribute="leading" secondItem="BDe-mz-CtR" secondAttribute="leading" id="LCz-31-Sgt"/>
                             <constraint firstItem="0v7-Gc-J3W" firstAttribute="top" secondItem="GjO-MQ-blF" secondAttribute="bottom" constant="375" id="Lss-ak-vI8"/>
                             <constraint firstAttribute="bottom" secondItem="0v7-Gc-J3W" secondAttribute="bottom" id="Nwv-NH-VwW"/>
                             <constraint firstItem="GjO-MQ-blF" firstAttribute="top" secondItem="BDe-mz-CtR" secondAttribute="top" id="Og4-Y8-6Jg"/>
+                            <constraint firstItem="lwh-hH-AWb" firstAttribute="top" secondItem="GjO-MQ-blF" secondAttribute="bottom" id="TLm-Nv-Jlt"/>
                             <constraint firstItem="4hc-FW-dcM" firstAttribute="centerX" secondItem="2fS-wz-OeH" secondAttribute="centerX" id="fvQ-JT-LyK"/>
                             <constraint firstItem="0v7-Gc-J3W" firstAttribute="top" secondItem="2fS-wz-OeH" secondAttribute="top" constant="500" id="kU5-OZ-HBQ"/>
+                            <constraint firstItem="lwh-hH-AWb" firstAttribute="bottom" secondItem="BDe-mz-CtR" secondAttribute="bottom" id="lz2-j9-gwS"/>
                             <constraint firstItem="GjO-MQ-blF" firstAttribute="width" secondItem="BDe-mz-CtR" secondAttribute="width" id="wW1-iC-ctX"/>
+                            <constraint firstItem="lwh-hH-AWb" firstAttribute="trailing" secondItem="BDe-mz-CtR" secondAttribute="trailing" id="zkQ-aO-0ab"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2fS-wz-OeH"/>
                     </view>
+                    <connections>
+                        <outlet property="PositionNameTextbox" destination="k3K-mf-y87" id="fEu-dV-OPU"/>
+                        <outlet property="feedUnavailableLabel" destination="4hc-FW-dcM" id="x9S-cJ-NqN"/>
+                        <outlet property="previewView" destination="lwh-hH-AWb" id="qcY-gj-rFI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MIQ-1w-C9K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -85,6 +99,9 @@
         </namedColor>
         <namedColor name="LightPink">
             <color red="0.85882352941176465" green="0.71372549019607845" blue="0.81176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightPink_70">
+            <color red="0.85882352941176465" green="0.71372549019607845" blue="0.81176470588235294" alpha="0.69999998807907104" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

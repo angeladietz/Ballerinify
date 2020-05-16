@@ -15,6 +15,8 @@
 		89E6FFD22463360A00D8AFD8 /* BallerinifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E6FFD12463360A00D8AFD8 /* BallerinifyTests.swift */; };
 		89E6FFDD2463360A00D8AFD8 /* BallerinifyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E6FFDC2463360A00D8AFD8 /* BallerinifyUITests.swift */; };
 		89E6FFEC24633EEE00D8AFD8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89E6FFEA24633EED00D8AFD8 /* Main.storyboard */; };
+		EE4A737C246346D600A241AF /* CameraFeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4A737B246346D600A241AF /* CameraFeedManager.swift */; };
+		EE4A737E2463470E00A241AF /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4A737D2463470E00A241AF /* PreviewView.swift */; };
 		FA049F4A97E0B3A3FA0C4A9C /* Pods_Ballerinify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D78481422B4E93B35E1739F1 /* Pods_Ballerinify.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +55,8 @@
 		89E6FFDE2463360A00D8AFD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89E6FFEB24633EED00D8AFD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D78481422B4E93B35E1739F1 /* Pods_Ballerinify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ballerinify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE4A737B246346D600A241AF /* CameraFeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFeedManager.swift; sourceTree = "<group>"; };
+		EE4A737D2463470E00A241AF /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +99,6 @@
 				3C4CAA8587644EE4B5788A45 /* Pods-Ballerinify.debug.xcconfig */,
 				68260EC03AC538262E2D9F2B /* Pods-Ballerinify.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -131,6 +134,8 @@
 				89E6FFC32463360800D8AFD8 /* Assets.xcassets */,
 				89E6FFC52463360800D8AFD8 /* LaunchScreen.storyboard */,
 				89E6FFC82463360800D8AFD8 /* Info.plist */,
+				EE4A737B246346D600A241AF /* CameraFeedManager.swift */,
+				EE4A737D2463470E00A241AF /* PreviewView.swift */,
 			);
 			path = Ballerinify;
 			sourceTree = "<group>";
@@ -310,8 +315,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE4A737E2463470E00A241AF /* PreviewView.swift in Sources */,
 				89E6FFBF246335FB00D8AFD8 /* ViewController.swift in Sources */,
 				89E6FFBB246335FB00D8AFD8 /* AppDelegate.swift in Sources */,
+				EE4A737C246346D600A241AF /* CameraFeedManager.swift in Sources */,
 				89E6FFBD246335FB00D8AFD8 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -489,6 +496,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V4VVG26X3D;
 				INFOPLIST_FILE = Ballerinify/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -508,6 +516,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V4VVG26X3D;
 				INFOPLIST_FILE = Ballerinify/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
