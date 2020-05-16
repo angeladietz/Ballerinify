@@ -40,15 +40,13 @@ class PoseClassifier: NSObject {
             if (person[BodyPart.LEFT_WRIST]!.x != person[BodyPart.LEFT_SHOULDER]!.x) &&  (person[BodyPart.RIGHT_WRIST]!.x != person[BodyPart.RIGHT_SHOULDER]!.x) {
                 let leftSlope = abs((person[BodyPart.LEFT_WRIST]!.y - person[BodyPart.LEFT_SHOULDER]!.y)/(person[BodyPart.LEFT_WRIST]!.x - person[BodyPart.LEFT_SHOULDER]!.x))
 
-                 let rightSlope = abs((person[BodyPart.RIGHT_WRIST]!.y - person[BodyPart.RIGHT_SHOULDER]!.y)/(person[BodyPart.RIGHT_WRIST]!.x - person[BodyPart.RIGHT_SHOULDER]!.x))
+                let rightSlope = abs((person[BodyPart.RIGHT_WRIST]!.y - person[BodyPart.RIGHT_SHOULDER]!.y)/(person[BodyPart.RIGHT_WRIST]!.x - person[BodyPart.RIGHT_SHOULDER]!.x))
 
-                if leftSlope < 0.5 && rightSlope < 0.5 {
+                if leftSlope < 0.5 && leftSlope > 0.3 && rightSlope < 0.5 && rightSlope > 0.3{
                     return "second"
                 }
             }
         }
-
-
         
         return "Not Ballet"
     }
