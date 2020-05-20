@@ -12,8 +12,8 @@
 - **CocoaPods** to manage project dependencies
 
 
-![Ballerinify UI](imgs/first.PNG =250x)
+![Ballerinify UI](imgs/first.PNG)
 
-![Ballerinify UI](imgs/fifth.PNG | width = 70)
+![Ballerinify UI](imgs/fifth.PNG)
 
 Have any feedback? We would love to hear from you @ acdietz@uwaterloo.ca and kmdietz@uwaterloo.ca
