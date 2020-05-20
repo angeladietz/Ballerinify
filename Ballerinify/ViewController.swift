@@ -204,7 +204,7 @@ extension ViewController: CameraFeedManagerDelegate {
       }
         print("great!")
         var pose = self.poseClassifier?.identifyPose(result: result)
-        self.PositionNameTextbox.text = pose
+        self.PositionNameTextbox.text = "Position: " + pose!
 //      self.drawResult(of: result)
         
         //TODO: set the position label here
