@@ -72,7 +72,7 @@
 		89E6FFF1246F94F600D8AFD8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D78481422B4E93B35E1739F1 /* Pods_Ballerinify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ballerinify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEE73663246FB19A00CAB2E6 /* PoseClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseClassifier.swift; sourceTree = "<group>"; };
-		EEE73665246FB43000CAB2E6 /* posenet_mobilenet_v1_100_257x257_multi_kpt_stripped.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; name = posenet_mobilenet_v1_100_257x257_multi_kpt_stripped.tflite; path = posenet_mobilenet_v1_100_257x257_multi_kpt_stripped.tflite; sourceTree = "<group>"; };
+		EEE73665246FB43000CAB2E6 /* posenet_mobilenet_v1_100_257x257_multi_kpt_stripped.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; name = posenet_mobilenet_v1_100_257x257_multi_kpt_stripped.tflite; path = ../posenet_mobilenet_v1_100_257x257_multi_kpt_stripped.tflite; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +146,7 @@
 		89E6000E2476403400D8AFD8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EEE73665246FB43000CAB2E6 /* posenet_mobilenet_v1_100_257x257_multi_kpt_stripped.tflite */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -209,7 +210,6 @@
 				89E600092476403400D8AFD8 /* Storyboards */,
 				89E600122476403400D8AFD8 /* Views */,
 				89E6000424763FFA00D8AFD8 /* ViewControllers */,
-				EEE73665246FB43000CAB2E6 /* posenet_mobilenet_v1_100_257x257_multi_kpt_stripped.tflite */,
 				89E6FFBA246335FB00D8AFD8 /* AppDelegate.swift */,
 				89E6FFBC246335FB00D8AFD8 /* SceneDelegate.swift */,
 				89E6FFC32463360800D8AFD8 /* Assets.xcassets */,
