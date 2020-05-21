@@ -2,8 +2,8 @@
 //  Constants.swift
 //  Ballerinify
 //
-//  Created by Angela Dietz on 2020-05-15.
-//  Copyright © 2020 Angela Dietz. All rights reserved.
+//  Created by Angela Dietz and Kara Dietz on 2020-05-15.
+//  Copyright © 2020 Angela Dietz and Kara Dietz. All rights reserved.
 //
 
 enum Constants {

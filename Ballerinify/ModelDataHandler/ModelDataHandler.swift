@@ -2,8 +2,8 @@
 //  ModelDataHandler.swift
 //  Ballerinify
 //
-//  Created by Angela Dietz on 2020-05-15.
-//  Copyright © 2020 Angela Dietz. All rights reserved.
+//  Created by Angela Dietz and Kara Dietz on 2020-05-15.
+//  Copyright © 2020 Angela Dietz and Kara Dietz. All rights reserved.
 //
 
 import Accelerate
@@ -13,31 +13,28 @@ import TensorFlowLite
 import UIKit
 
 class ModelDataHandler{
-    // MARK: - Private Properties
 
     /// TensorFlow Lite `Interpreter` object for performing inference on a given model.
     private var interpreter: Interpreter
 
     /// TensorFlow lite `Tensor` of model input and output.
     private var inputTensor: Tensor
-
     private var heatsTensor: Tensor
     private var offsetsTensor: Tensor
     
     //MARK: -Initialization
-    
     init(
         threadCount: Int = Constants.defaultThreadCount
     ) throws
     {
         // Construct the path to the model file.
         guard
-          let modelPath = Bundle.main.path(
-            forResource: Model.file.name,
-            ofType: Model.file.extension
-          )
+            let modelPath = Bundle.main.path(
+                forResource: Model.file.name,
+                ofType: Model.file.extension
+            )
         else {
-          fatalError("Failed to load the model file with name: \(Model.file.name).")
+            fatalError("Failed to load the model file with name: \(Model.file.name).")
         }
         
         // Specify the options for the `Interpreter`.
@@ -58,31 +55,31 @@ class ModelDataHandler{
 
         // Check if input and output `Tensor`s are in the expected formats.
         guard (inputTensor.dataType == .uInt8) == Model.isQuantized else {
-          fatalError("Unexpected Model: quantization is \(!Model.isQuantized)")
+            fatalError("Unexpected Model: quantization is \(!Model.isQuantized)")
         }
 
         guard inputTensor.shape.dimensions[0] == Model.input.batchSize,
-          inputTensor.shape.dimensions[1] == Model.input.height,
-          inputTensor.shape.dimensions[2] == Model.input.width,
-          inputTensor.shape.dimensions[3] == Model.input.channelSize
+            inputTensor.shape.dimensions[1] == Model.input.height,
+            inputTensor.shape.dimensions[2] == Model.input.width,
+            inputTensor.shape.dimensions[3] == Model.input.channelSize
         else {
-          fatalError("Unexpected Model: input shape")
+            fatalError("Unexpected Model: input shape")
         }
 
         guard heatsTensor.shape.dimensions[0] == Model.output.batchSize,
-          heatsTensor.shape.dimensions[1] == Model.output.height,
-          heatsTensor.shape.dimensions[2] == Model.output.width,
-          heatsTensor.shape.dimensions[3] == Model.output.keypointSize
+            heatsTensor.shape.dimensions[1] == Model.output.height,
+            heatsTensor.shape.dimensions[2] == Model.output.width,
+            heatsTensor.shape.dimensions[3] == Model.output.keypointSize
         else {
-          fatalError("Unexpected Model: heat tensor")
+            fatalError("Unexpected Model: heat tensor")
         }
 
         guard offsetsTensor.shape.dimensions[0] == Model.output.batchSize,
-          offsetsTensor.shape.dimensions[1] == Model.output.height,
-          offsetsTensor.shape.dimensions[2] == Model.output.width,
-          offsetsTensor.shape.dimensions[3] == Model.output.offsetSize
+            offsetsTensor.shape.dimensions[1] == Model.output.height,
+            offsetsTensor.shape.dimensions[2] == Model.output.width,
+            offsetsTensor.shape.dimensions[3] == Model.output.offsetSize
         else {
-          fatalError("Unexpected Model: offset tensor")
+            fatalError("Unexpected Model: offset tensor")
         }
     }
 
@@ -167,7 +164,7 @@ class ModelDataHandler{
       return inputData
     }
     
-    /// Postprocesses output `Tensor`s to `Result` with size of view to render the result.
+     /// Postprocesses output `Tensor`s to `Result` with size of view to render the result.
      ///
      /// - Parameters:
      ///   - to: Size of view to be displaied.

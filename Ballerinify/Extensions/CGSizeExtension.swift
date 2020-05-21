@@ -2,8 +2,8 @@
 //  CGSizeExtension.swift
 //  Ballerinify
 //
-//  Created by Angela Dietz on 2020-05-15.
-//  Copyright © 2020 Angela Dietz. All rights reserved.
+//  Created by Kara Dietz and Angela Dietz on 2020-05-15.
+//  Copyright © 2020 Kara Dietz and Angela Dietz. All rights reserved.
 //
 
 import Accelerate
