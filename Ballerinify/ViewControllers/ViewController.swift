@@ -58,6 +58,8 @@ final class ViewController: UIViewController {
 
   // Handles all data preprocessing and makes calls to run inference.
     private var modelDataHandler: ModelDataHandler?
+    
+    private var poseClassifier: PoseClassifier? = PoseClassifier()
 
   // MARK: View Handling Methods
   override func viewDidLoad() {
@@ -201,8 +203,8 @@ extension ViewController: CameraFeedManagerDelegate {
         return
       }
         print("great!")
-//        var pose = self.danceAnalyzer?.identifyPose(result: result)
-//        self.positionNameLabel.text = pose
+        var pose = self.poseClassifier?.identifyPose(result: result)
+        self.PositionNameTextbox.text = "Position: " + pose!
 //      self.drawResult(of: result)
         
         //TODO: set the position label here
