@@ -164,7 +164,7 @@ extension ViewController: CameraFeedManagerDelegate {
         DispatchQueue.main.async {
             
             if result.score < self.minimumScore {
-                print("We aren't sure which position you're in.")
+                print("Confidence score is too low.")
                 return
             }
 
