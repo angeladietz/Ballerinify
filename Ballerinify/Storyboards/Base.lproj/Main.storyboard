@@ -31,7 +31,7 @@
                                 </constraints>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera feed unavailable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hc-FW-dcM">
-                                <rect key="frame" x="93.5" y="310" width="188" height="21"/>
+                                <rect key="frame" x="93.5" y="310" width="188" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -40,7 +40,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ballerinify" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBi-l9-Tij">
-                                        <rect key="frame" x="57.5" y="31.5" width="260.5" height="62"/>
+                                        <rect key="frame" x="57.5" y="32" width="260.5" height="61.5"/>
                                         <viewLayoutGuide key="safeArea" id="d2Y-2t-krS"/>
                                         <fontDescription key="fontDescription" name="Optima-ExtraBlack" family="Optima" pointSize="50"/>
                                         <color key="textColor" name="DarkPink"/>
@@ -57,18 +57,33 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0v7-Gc-J3W" userLabel="BottomView">
                                 <rect key="frame" x="0.0" y="500" width="375" height="167"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hmm, I'm not sure what position that is, try another one!" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3K-mf-y87">
-                                        <rect key="frame" x="40" y="20" width="295" height="96.5"/>
-                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="27"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EGD-J1-z2j" userLabel="PoseLabelStackView">
+                                        <rect key="frame" x="45" y="14" width="285" height="32.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="calculating position" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3K-mf-y87" userLabel="ArmsPositionLabel">
+                                                <rect key="frame" x="0.0" y="0.0" width="285" height="32.5"/>
+                                                <fontDescription key="fontDescription" name="Optima-BoldItalic" family="Optima" pointSize="27"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="calculating leg position" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNF-1j-RQS" userLabel="LegsPositionLabel">
+                                                <rect key="frame" x="0.0" y="0.0" width="285" height="0.0"/>
+                                                <fontDescription key="fontDescription" name="Optima-BoldItalic" family="Optima" pointSize="27"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="k3K-mf-y87" firstAttribute="top" secondItem="EGD-J1-z2j" secondAttribute="top" id="fld-3k-xyd"/>
+                                            <constraint firstItem="qNF-1j-RQS" firstAttribute="top" secondItem="EGD-J1-z2j" secondAttribute="top" id="kED-fC-9ng"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" name="LightPink_70"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="k3K-mf-y87" secondAttribute="trailing" constant="40" id="TJd-tW-EhO"/>
-                                    <constraint firstItem="k3K-mf-y87" firstAttribute="top" secondItem="0v7-Gc-J3W" secondAttribute="top" constant="20" id="UvW-C9-JQX"/>
-                                    <constraint firstItem="k3K-mf-y87" firstAttribute="leading" secondItem="0v7-Gc-J3W" secondAttribute="leading" constant="40" id="gyu-DE-Skb"/>
+                                    <constraint firstAttribute="trailing" secondItem="EGD-J1-z2j" secondAttribute="trailingMargin" constant="45" id="6md-Wk-0KM"/>
+                                    <constraint firstItem="EGD-J1-z2j" firstAttribute="leading" secondItem="0v7-Gc-J3W" secondAttribute="leading" constant="45" id="Ifb-gj-9dJ" userLabel="PoseLabelStackView.leading = PoseLabelStackView.trailing"/>
+                                    <constraint firstItem="EGD-J1-z2j" firstAttribute="top" secondItem="0v7-Gc-J3W" secondAttribute="top" constant="14" id="fyG-7q-DHX"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -94,6 +109,8 @@
                         <viewLayoutGuide key="safeArea" id="2fS-wz-OeH"/>
                     </view>
                     <connections>
+                        <outlet property="ArmsPositionLabel" destination="k3K-mf-y87" id="dGF-7N-6UN"/>
+                        <outlet property="LegsPositionLabel" destination="qNF-1j-RQS" id="iPw-Ln-5Ki"/>
                         <outlet property="PositionNameTextbox" destination="k3K-mf-y87" id="fEu-dV-OPU"/>
                         <outlet property="feedUnavailableLabel" destination="4hc-FW-dcM" id="x9S-cJ-NqN"/>
                         <outlet property="modelView" destination="kUG-Cp-xT8" id="glG-Ro-b8P"/>
@@ -102,7 +119,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MIQ-1w-C9K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-253.62318840579712" y="99.107142857142847"/>
+            <point key="canvasLocation" x="-255.19999999999999" y="98.50074962518741"/>
         </scene>
     </scenes>
     <resources>

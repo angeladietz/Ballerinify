@@ -1,3 +1,4 @@
+
 //
 //  ViewController.swift
 //  Ballerinify
@@ -18,7 +19,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 import Accelerate
 import CoreImage
 import Foundation
@@ -43,6 +43,8 @@ final class ViewController: UIViewController {
   // Inferenced data to render.
   private var inferencedData: InferencedData?
     @IBOutlet weak var PositionNameTextbox: UILabel!
+    @IBOutlet weak var ArmsPositionLabel: UILabel!
+    @IBOutlet weak var LegsPositionLabel: UILabel!
     
   // Minimum score to render the result.
   private let minimumScore: Float = 0.5
@@ -74,7 +76,6 @@ final class ViewController: UIViewController {
     cameraCapture.delegate = self
 //    tableView.delegate = self
 //    tableView.dataSource = self
-
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -194,20 +195,20 @@ extension ViewController: CameraFeedManagerDelegate {
 
     
     
-    // Draw result.
+    // Determine result.
     DispatchQueue.main.async {
-      //self.tableView.reloadData()
-      // If score is too low, clear result remaining in the overlayView.
-      if result.score < self.minimumScore {
-        print("Not good enough")
-        return
-      }
-        print("great!")
-        var pose = self.poseClassifier?.identifyPose(result: result)
-        self.PositionNameTextbox.text = "Position: " + pose!
-//      self.drawResult(of: result)
-        
-        //TODO: set the position label here
+
+        if result.score < self.minimumScore {
+            print("Confidence score is too low.")
+            return
+        }
+
+        //logic: there are two labels: one for arms, one for legs. if we detect a full body pose (arabesque) use arm label and hide leg label. leg label is hidden by default, so unhide it when a leg position is found
+
+        let pose = self.poseClassifier?.identifyPose(result: result)
+        self.ArmsPositionLabel.text = "Arm Position: " + pose!
+
+        // TODO: Draw result here (skeleton) if that's a feature that will be implemented)
     }
   }
 }
@@ -222,7 +223,6 @@ extension ViewController: CameraFeedManagerDelegate {
 //    public func updateUIViewController(_ uiViewController: ViewController, context: UIViewControllerRepresentableContext<ViewController>) {
 //    }
 //}
-
 // MARK: - TableViewDelegate, TableViewDataSource Methods
 //extension ViewController: UITableViewDelegate {
 //  func numberOfSections(in tableView: UITableView) -> Int {
@@ -236,7 +236,6 @@ extension ViewController: CameraFeedManagerDelegate {
 //
 //    return section.subcaseCount
 //  }
-
 //  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //    let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell") as! InfoCell
 //    guard let section = InferenceSections(rawValue: indexPath.section) else {
@@ -269,7 +268,6 @@ extension ViewController: CameraFeedManagerDelegate {
 //
 //    return cell
 //  }
-
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     guard let section = InferenceSections(rawValue: indexPath.section) else {
       return 0
@@ -330,4 +328,3 @@ fileprivate enum ProcessingTimes: Int, CaseIterable {
     }
   }
 }
-
