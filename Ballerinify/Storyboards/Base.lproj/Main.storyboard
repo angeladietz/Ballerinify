@@ -21,14 +21,22 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kUG-Cp-xT8" userLabel="ModelView" customClass="ModelView" customModule="Ballerinify" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="m4U-IN-gQw" appends="YES" id="1Tz-C5-X8n"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="kUG-Cp-xT8" secondAttribute="trailing" id="DLg-1v-u97"/>
                                     <constraint firstItem="kUG-Cp-xT8" firstAttribute="leading" secondItem="lwh-hH-AWb" secondAttribute="leading" id="GHN-78-IRk"/>
                                     <constraint firstItem="kUG-Cp-xT8" firstAttribute="top" secondItem="lwh-hH-AWb" secondAttribute="top" id="ytl-qN-6j4"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="m4U-IN-gQw" appends="YES" id="HN5-6l-aWn"/>
+                                </connections>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera feed unavailable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hc-FW-dcM">
                                 <rect key="frame" x="93.5" y="310" width="188" height="20.5"/>
@@ -119,9 +127,15 @@
                         <outlet property="feedUnavailableLabel" destination="4hc-FW-dcM" id="x9S-cJ-NqN"/>
                         <outlet property="modelView" destination="kUG-Cp-xT8" id="glG-Ro-b8P"/>
                         <outlet property="previewView" destination="lwh-hH-AWb" id="qcY-gj-rFI"/>
+                        <outlet property="switchCameraTaps" destination="m4U-IN-gQw" id="MTZ-tH-Tle"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MIQ-1w-C9K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="m4U-IN-gQw">
+                    <connections>
+                        <action selector="switchCamera:" destination="qNQ-bB-dAP" id="AWo-ON-aw9"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-255.19999999999999" y="98.50074962518741"/>
         </scene>

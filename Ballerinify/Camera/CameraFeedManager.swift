@@ -54,14 +54,16 @@ class CameraFeedManager: NSObject {
   private var cameraConfiguration: CameraConfiguration = .failed
   private lazy var videoDataOutput = AVCaptureVideoDataOutput()
   private var isSessionRunning = false
+  private var usingFrontCamera = false
 
   // MARK: CameraFeedManagerDelegate
   weak var delegate: CameraFeedManagerDelegate?
 
   // MARK: Initializer
-  init(previewView: PreviewView) {
+  init(previewView: PreviewView, usingFrontCamera: Bool) {
     print("initializing camera feed manager")
     self.previewView = previewView
+    self.usingFrontCamera = usingFrontCamera
     super.init()
 
     // Initializes the session
@@ -185,13 +187,23 @@ class CameraFeedManager: NSObject {
   private func addVideoDeviceInput() -> Bool {
     /// Tries to get the default back camera.
     let camera: AVCaptureDevice?
-    if let backCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back){
-        camera = backCamera
-    } else if let frontCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front){
-        camera = frontCamera
-    } else {
+    if !usingFrontCamera {
+        camera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
+    }
+    else  {
+        camera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front)
+    }
+    
+    if camera == nil {
         fatalError("Cannot find camera")
     }
+//    if let backCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back){
+//        camera = backCamera
+//    } else if let frontCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front){
+//        camera = frontCamera
+//    } else {
+//        fatalError("Cannot find camera")
+//    }
 
     do {
       let videoDeviceInput = try AVCaptureDeviceInput(device: camera!)

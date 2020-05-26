@@ -19,6 +19,8 @@ final class ViewController: UIViewController {
     @IBOutlet weak var previewView: PreviewView!
     @IBOutlet weak var modelView: ModelView!
     
+//    @IBOutlet var switchCameraTaps: UITapGestureRecognizer!
+    
     // MARK: ModelDataHandler traits
     @IBOutlet weak var feedUnavailableLabel: UILabel!
     
@@ -39,7 +41,15 @@ final class ViewController: UIViewController {
 
     // MARK: Controllers that manage functionality
     // Handles all the camera related functionality
-    private lazy var cameraCapture = CameraFeedManager(previewView: previewView)
+    private var usingFrontCamera = false
+    private lazy var cameraCapture = CameraFeedManager(previewView: previewView, usingFrontCamera: usingFrontCamera)
+    
+    @IBAction func switchCamera(_ sender: UITapGestureRecognizer) {
+        if sender.state == .ended {
+            usingFrontCamera = !usingFrontCamera
+            cameraCapture = CameraFeedManager(previewView: previewView, usingFrontCamera: usingFrontCamera)
+        }
+    }
 
     // Handles all data preprocessing and makes calls to run inference (classify positions).
     private var modelDataHandler: ModelDataHandler?
@@ -47,6 +57,7 @@ final class ViewController: UIViewController {
 
     // MARK: View Handling Methods
     override func viewDidLoad() {
+        print("hello")
         super.viewDidLoad()
 
         do {
@@ -143,25 +154,6 @@ extension ViewController: CameraFeedManagerDelegate {
         guard let modelViewFrame = modelViewFrame else {
             return
         }
-    
-    
-    // Determine result.
-    DispatchQueue.main.async {
-
-        if result.score < self.minimumScore {
-            print("Confidence score is too low.")
-            return
-        }
-
-        //logic: there are two labels: one for arms, one for legs. if we detect a full body pose (arabesque) use arm label and hide leg label. leg label is hidden by default, so unhide it when a leg position is found
-
-        let pose = self.poseClassifier?.identifyPose(result: result)
-        self.ArmsPositionLabel.text = "Arm Position: " + pose!
-
-        // TODO: Draw result here (skeleton) if that's a feature that will be implemented)
-    }
-  }
-}
 
         // Set bounds for model
         let modelInputRange = modelViewFrame.applying(
