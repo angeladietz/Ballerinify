@@ -2,8 +2,8 @@
 //  PoseClassifier.swift
 //  Ballerinify
 //
-//  Created by Kara Dietz on 2020-05-16.
-//  Copyright © 2020 Angela Dietz. All rights reserved.
+//  Created by Kara Dietz and Angela Dietz on 2020-05-16.
+//  Copyright © 2020 Kara Dietz and Angela Dietz. All rights reserved.
 //
 
 import Foundation
