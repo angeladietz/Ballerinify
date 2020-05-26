@@ -6,19 +6,7 @@
 //  Created by Angela Dietz on 2020-05-06.
 //  Copyright © 2020 Angela Dietz. All rights reserved.
 //
-// Copyright 2019 The TensorFlow Authors. All Rights Reserved.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//    http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+
 import Accelerate
 import CoreImage
 import Foundation
@@ -74,8 +62,6 @@ final class ViewController: UIViewController {
     }
 
     cameraCapture.delegate = self
-//    tableView.delegate = self
-//    tableView.dataSource = self
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -212,73 +198,6 @@ extension ViewController: CameraFeedManagerDelegate {
     }
   }
 }
-
-//extension ViewController : UIViewControllerRepresentable{
-//    public typealias UIViewControllerType = ViewController
-//
-//    public func makeUIViewController(context: UIViewControllerRepresentableContext<ViewController>) -> ViewController {
-//        return ViewController()
-//    }
-//
-//    public func updateUIViewController(_ uiViewController: ViewController, context: UIViewControllerRepresentableContext<ViewController>) {
-//    }
-//}
-// MARK: - TableViewDelegate, TableViewDataSource Methods
-//extension ViewController: UITableViewDelegate {
-//  func numberOfSections(in tableView: UITableView) -> Int {
-//    return InferenceSections.allCases.count
-//  }
-//
-//  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//    guard let section = InferenceSections(rawValue: section) else {
-//      return 0
-//    }
-//
-//    return section.subcaseCount
-//  }
-//  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//    let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell") as! InfoCell
-//    guard let section = InferenceSections(rawValue: indexPath.section) else {
-//      return cell
-//    }
-//    guard let data = inferencedData else { return cell }
-//
-//    var fieldName: String
-//    var info: String
-//
-//    switch section {
-//    case .Score:
-//      fieldName = section.description
-//      info = String(format: "%.3f", data.score)
-//    case .Time:
-//      guard let row = ProcessingTimes(rawValue: indexPath.row) else {
-//        return cell
-//      }
-//      var time: Double
-//      switch row {
-//      case .InferenceTime:
-//        time = data.times.inference
-//      }
-//      fieldName = row.description
-//      info = String(format: "%.2fms", time)
-//    }
-//
-//    cell.fieldNameLabel.text = fieldName
-//    cell.infoLabel.text = info
-//
-//    return cell
-//  }
-  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    guard let section = InferenceSections(rawValue: indexPath.section) else {
-      return 0
-    }
-
-    var height = Traits.normalCellHeight
-    if indexPath.row == section.subcaseCount - 1 {
-      height = Traits.separatorCellHeight + Traits.bottomSpacing
-    }
-    return height
-  }
 
 // MARK: - Private enums
 /// UI coinstraint values
