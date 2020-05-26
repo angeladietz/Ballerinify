@@ -143,25 +143,6 @@ extension ViewController: CameraFeedManagerDelegate {
         guard let modelViewFrame = modelViewFrame else {
             return
         }
-    
-    
-    // Determine result.
-    DispatchQueue.main.async {
-
-        if result.score < self.minimumScore {
-            print("Confidence score is too low.")
-            return
-        }
-
-        //logic: there are two labels: one for arms, one for legs. if we detect a full body pose (arabesque) use arm label and hide leg label. leg label is hidden by default, so unhide it when a leg position is found
-
-        let pose = self.poseClassifier?.identifyPose(result: result)
-        self.ArmsPositionLabel.text = "Arm Position: " + pose!
-
-        // TODO: Draw result here (skeleton) if that's a feature that will be implemented)
-    }
-  }
-}
 
         // Set bounds for model
         let modelInputRange = modelViewFrame.applying(
