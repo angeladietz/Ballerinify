@@ -74,8 +74,12 @@
                                             </label>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="qNF-1j-RQS" secondAttribute="trailing" id="FpJ-nN-4Zc"/>
+                                            <constraint firstAttribute="trailing" secondItem="k3K-mf-y87" secondAttribute="trailing" id="MJU-xJ-KIR"/>
+                                            <constraint firstItem="k3K-mf-y87" firstAttribute="leading" secondItem="EGD-J1-z2j" secondAttribute="leading" id="Xrx-AL-fFC"/>
                                             <constraint firstItem="k3K-mf-y87" firstAttribute="top" secondItem="EGD-J1-z2j" secondAttribute="top" id="fld-3k-xyd"/>
                                             <constraint firstItem="qNF-1j-RQS" firstAttribute="top" secondItem="EGD-J1-z2j" secondAttribute="top" id="kED-fC-9ng"/>
+                                            <constraint firstItem="qNF-1j-RQS" firstAttribute="leading" secondItem="EGD-J1-z2j" secondAttribute="leading" id="nFN-xx-Rf9"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
