@@ -33,10 +33,10 @@ class PoseClassifier: NSObject {
             return "fifth"
         }
         else if isArmsThirdPos(person: person) {
-            return "first"
+            return "third"
         }
         else if isArmsFourthPos(person: person) {
-            return "fifth"
+            return "fourth"
         }
         return "Not ballet"
     }
@@ -64,10 +64,17 @@ class PoseClassifier: NSObject {
             shoulder = BodyPart.RIGHT_SHOULDER
         }
 
-        if person[wrist]!.y > person[elbow]!.y {
-            if person[elbow]!.y > person[shoulder]!.y {
-                return true
+        if person[wrist]!.y > person[elbow]!.y && person[elbow]!.y > person[shoulder]!.y{
+            if side == Side.LEFT {
+                if person[shoulder]!.x > person[elbow]!.x && person[wrist]!.x > person[elbow]!.x {
+                    return true
+                }
             }
+            else {
+                if person[shoulder]!.x < person[elbow]!.x && person[wrist]!.x < person[elbow]!.x {
+                    return true
+                }
+            }   
         }
         return false
     }
