@@ -1,10 +1,10 @@
+
 //
 //  ViewController.swift
 //  Ballerinify
 //
 //  Created by Angela Dietz and Kara Dietz on 2020-05-06.
 //  Copyright © 2020 Angela Dietz and Kara Dietz. All rights reserved.
-
 
 import Accelerate
 import CoreImage
@@ -27,6 +27,8 @@ final class ViewController: UIViewController {
     // Inferenced data to render.
     private var inferencedData: InferencedData?
     @IBOutlet weak var PositionNameTextbox: UILabel!
+    @IBOutlet weak var ArmsPositionLabel: UILabel!
+    @IBOutlet weak var LegsPositionLabel: UILabel!
     
     // Minimum score to render the result.
     private let minimumScore: Float = 0.5
@@ -141,6 +143,25 @@ extension ViewController: CameraFeedManagerDelegate {
         guard let modelViewFrame = modelViewFrame else {
             return
         }
+    
+    
+    // Determine result.
+    DispatchQueue.main.async {
+
+        if result.score < self.minimumScore {
+            print("Confidence score is too low.")
+            return
+        }
+
+        //logic: there are two labels: one for arms, one for legs. if we detect a full body pose (arabesque) use arm label and hide leg label. leg label is hidden by default, so unhide it when a leg position is found
+
+        let pose = self.poseClassifier?.identifyPose(result: result)
+        self.ArmsPositionLabel.text = "Arm Position: " + pose!
+
+        // TODO: Draw result here (skeleton) if that's a feature that will be implemented)
+    }
+  }
+}
 
         // Set bounds for model
         let modelInputRange = modelViewFrame.applying(
@@ -169,7 +190,7 @@ extension ViewController: CameraFeedManagerDelegate {
             }
 
             let pose = self.poseClassifier?.identifyPose(result: result)
-            self.PositionNameTextbox.text = "Position: " + pose!
+            self.ArmsPositionLabel.text = "Arm Position: " + pose!
             
             // TODO: Draw result here (skeleton) if that's a feature that will be implemented)
     }
