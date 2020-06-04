@@ -44,12 +44,14 @@ final class ViewController: UIViewController {
     private var usingFrontCamera = false
     private lazy var cameraCapture = CameraFeedManager(previewView: previewView, usingFrontCamera: usingFrontCamera)
     
-    @IBAction func switchCamera(_ sender: UITapGestureRecognizer) {
+    @IBAction func switchCameraTaps(_ sender: UITapGestureRecognizer) {
+        
         if sender.state == .ended {
             usingFrontCamera = !usingFrontCamera
             cameraCapture = CameraFeedManager(previewView: previewView, usingFrontCamera: usingFrontCamera)
         }
     }
+    
 
     // Handles all data preprocessing and makes calls to run inference (classify positions).
     private var modelDataHandler: ModelDataHandler?
