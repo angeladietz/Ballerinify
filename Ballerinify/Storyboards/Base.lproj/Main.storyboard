@@ -58,7 +58,7 @@
                                 <rect key="frame" x="0.0" y="500" width="375" height="167"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EGD-J1-z2j" userLabel="PoseLabelStackView">
-                                        <rect key="frame" x="45" y="14" width="285" height="32.5"/>
+                                        <rect key="frame" x="45" y="14" width="285" height="65"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="calculating position" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3K-mf-y87" userLabel="ArmsPositionLabel">
                                                 <rect key="frame" x="0.0" y="0.0" width="285" height="32.5"/>
@@ -66,20 +66,17 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="calculating leg position" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNF-1j-RQS" userLabel="LegsPositionLabel">
-                                                <rect key="frame" x="0.0" y="0.0" width="285" height="0.0"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="calculating leg position" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNF-1j-RQS" userLabel="LegsPositionLabel">
+                                                <rect key="frame" x="0.0" y="32.5" width="285" height="32.5"/>
                                                 <fontDescription key="fontDescription" name="Optima-BoldItalic" family="Optima" pointSize="27"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="qNF-1j-RQS" secondAttribute="trailing" id="FpJ-nN-4Zc"/>
                                             <constraint firstAttribute="trailing" secondItem="k3K-mf-y87" secondAttribute="trailing" id="MJU-xJ-KIR"/>
                                             <constraint firstItem="k3K-mf-y87" firstAttribute="leading" secondItem="EGD-J1-z2j" secondAttribute="leading" id="Xrx-AL-fFC"/>
                                             <constraint firstItem="k3K-mf-y87" firstAttribute="top" secondItem="EGD-J1-z2j" secondAttribute="top" id="fld-3k-xyd"/>
-                                            <constraint firstItem="qNF-1j-RQS" firstAttribute="top" secondItem="EGD-J1-z2j" secondAttribute="top" id="kED-fC-9ng"/>
-                                            <constraint firstItem="qNF-1j-RQS" firstAttribute="leading" secondItem="EGD-J1-z2j" secondAttribute="leading" id="nFN-xx-Rf9"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>

@@ -166,18 +166,39 @@ extension ViewController: CameraFeedManagerDelegate {
         DispatchQueue.main.async {
             
             if result.score < self.minimumScore {
+                self.ArmsPositionLabel.text = "calculating position"
                 self.LegsPositionLabel.isHidden = true
                 print("Confidence score is too low.")
                 return
             }
             
-            let poseClassifier = PoseClassifier(result: result)
-            let armPose = poseClassifier.identifyArmPosition()
-            let legPose = poseClassifier.identifyLegPosition()
-            self.LegsPositionLabel.isHidden = false
-            //issue: legs label overlaps arms label
-            self.ArmsPositionLabel.text = "Arm Position: " + armPose
-            self.LegsPositionLabel.text = "Leg Position: " + legPose
+            let poseClassifier: PoseClassifier? = PoseClassifier(result: result)
+            let bodyPose = poseClassifier!.identifyBodyPosition()
+            let armPose = poseClassifier!.identifyArmPosition()
+            let legPose = poseClassifier!.identifyLegPosition()
+            print("Body: ", bodyPose)
+            print("Arms: ", armPose)
+            print("Legs: ", legPose)
+            if bodyPose != "Free movement" {
+                self.LegsPositionLabel.isHidden = true
+                self.ArmsPositionLabel.text = "Position: " + bodyPose
+            } else if armPose == "Free movement" && legPose == "Free movement" {
+                self.LegsPositionLabel.isHidden = true
+                self.ArmsPositionLabel.text = "Position: " + armPose
+            } else if legPose == "Free movement" {
+                self.LegsPositionLabel.isHidden = true
+                self.ArmsPositionLabel.text = "Arm Position: " + armPose
+            } else if armPose == "Free movement" {
+                self.ArmsPositionLabel.text = ""
+                self.LegsPositionLabel.isHidden = false
+                self.LegsPositionLabel.text = "Leg Position: " + legPose
+            } else {
+                // arm is free movement and legs has set position
+                // both have positions available
+                self.LegsPositionLabel.isHidden = false
+                self.ArmsPositionLabel.text = "Arm Position: " + armPose
+                self.LegsPositionLabel.text = "Leg Position: " + legPose
+            }
             
             // TODO: Draw result here (skeleton) if that's a feature that will be implemented)
     }

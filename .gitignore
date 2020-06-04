@@ -1,3 +1,4 @@
 xcuserdata/
 Pods/
 *.tflite
+/TestingImages
