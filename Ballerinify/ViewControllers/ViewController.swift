@@ -43,7 +43,7 @@ final class ViewController: UIViewController {
 
     // Handles all data preprocessing and makes calls to run inference (classify positions).
     private var modelDataHandler: ModelDataHandler?
-    private var poseClassifier: PoseClassifier? = PoseClassifier()
+//    private var poseClassifier: PoseClassifier? = PoseClassifier()
 
     // MARK: View Handling Methods
     override func viewDidLoad() {
@@ -166,12 +166,18 @@ extension ViewController: CameraFeedManagerDelegate {
         DispatchQueue.main.async {
             
             if result.score < self.minimumScore {
+                self.LegsPositionLabel.isHidden = true
                 print("Confidence score is too low.")
                 return
             }
-
-            let pose = self.poseClassifier?.identifyPose(result: result)
-            self.ArmsPositionLabel.text = "Arm Position: " + pose!
+            
+            let poseClassifier = PoseClassifier(result: result)
+            let armPose = poseClassifier.identifyArmPosition()
+            let legPose = poseClassifier.identifyLegPosition()
+            self.LegsPositionLabel.isHidden = false
+            //issue: legs label overlaps arms label
+            self.ArmsPositionLabel.text = "Arm Position: " + armPose
+            self.LegsPositionLabel.text = "Leg Position: " + legPose
             
             // TODO: Draw result here (skeleton) if that's a feature that will be implemented)
     }
