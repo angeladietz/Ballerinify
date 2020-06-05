@@ -20,7 +20,6 @@
 <img src="imgs/pose3.png" width="30%">
 <img src="imgs/pose4.png" width="30%">
 <img src="imgs/pose5.png" width="30%">
-<img src="imgs/pose6.png" width="30%">
 <img src="imgs/pose7.png" width="30%">
 <img src="imgs/pose8.png" width="30%">
 
