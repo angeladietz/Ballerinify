@@ -128,7 +128,7 @@ class PoseClassifier: NSObject {
     }
     
     func isLegsSecondPos() -> Bool {
-        return isLegStanding(side: Side.LEFT) && isLegStanding(side: Side.RIGHT) && getSeparation(isX: true, part1: self.rightBody.ankle, part2: self.leftBody.ankle) >= 30 && getSeparation(isX: true, part1: self.rightBody.ankle, part2: self.leftBody.ankle) < 70 && getSeparation(isX: true, part1: self.rightBody.knee, part2: self.leftBody.knee) > 30
+        return isLegStanding(side: Side.LEFT) && isLegStanding(side: Side.RIGHT) && person[rightBody.ankle]!.x > person[rightBody.hip]!.x && person[leftBody.ankle]!.x < person[leftBody.hip]!.x
     }
     
     func isLegsFifthPos() -> Bool {
