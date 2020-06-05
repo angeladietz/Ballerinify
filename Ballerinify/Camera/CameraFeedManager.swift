@@ -48,22 +48,24 @@ enum CameraConfiguration {
 class CameraFeedManager: NSObject {
   // MARK: Camera Related Instance Variables
   private let session: AVCaptureSession = AVCaptureSession()
-
+  var usingFrontCamera: Bool = false
   private let previewView: PreviewView
   private let sessionQueue = DispatchQueue(label: "sessionQueue")
   private var cameraConfiguration: CameraConfiguration = .failed
   private lazy var videoDataOutput = AVCaptureVideoDataOutput()
   private var isSessionRunning = false
+  @objc dynamic var videoDeviceInput: AVCaptureDeviceInput!
 
   // MARK: CameraFeedManagerDelegate
   weak var delegate: CameraFeedManagerDelegate?
 
   // MARK: Initializer
-  init(previewView: PreviewView) {
+  init(previewView: PreviewView, usingFrontCamera: Bool) {
     print("initializing camera feed manager")
     self.previewView = previewView
+    self.usingFrontCamera = usingFrontCamera
     super.init()
-
+    
     // Initializes the session
     session.sessionPreset = .high
     self.previewView.session = session
@@ -72,6 +74,7 @@ class CameraFeedManager: NSObject {
     self.attemptToConfigureSession()
   }
 
+    
   // MARK: Session Start and End methods
 
   /// This method starts an AVCaptureSession based on whether the camera configuration was successful.
@@ -185,18 +188,33 @@ class CameraFeedManager: NSObject {
   private func addVideoDeviceInput() -> Bool {
     /// Tries to get the default back camera.
     let camera: AVCaptureDevice?
-    if let backCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back){
-        camera = backCamera
-    } else if let frontCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front){
-        camera = frontCamera
+    print("ADDING FRONT VIDEO DEVICE INPUT: ", usingFrontCamera)
+    if usingFrontCamera {
+        if let frontCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front){
+            camera = frontCamera
+        } else {
+            fatalError("Cannot find camera")
+        }
     } else {
-        fatalError("Cannot find camera")
+        if let backCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back){
+            camera = backCamera
+        } else {
+            fatalError("Cannot find camera")
+        }
     }
+//    if let backCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back){
+//        camera = backCamera
+//    } else if let frontCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front){
+//        camera = frontCamera
+//    } else {
+//        fatalError("Cannot find camera")
+//    }
 
     do {
       let videoDeviceInput = try AVCaptureDeviceInput(device: camera!)
       if session.canAddInput(videoDeviceInput) {
         session.addInput(videoDeviceInput)
+        self.videoDeviceInput = videoDeviceInput
         return true
       } else {
         return false
@@ -291,6 +309,70 @@ class CameraFeedManager: NSObject {
       delegate?.cameraFeedManagerDidEncounterSessionRunTimeError(self)
     }
   }
+    
+    private let videoDeviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera, .builtInDualCamera, .builtInTrueDepthCamera],
+                                                                                  mediaType: .video, position: .unspecified)
+       
+    /// - Tag: ChangeCamera
+    func changeCamera() {
+        
+        sessionQueue.async {
+            let currentVideoDevice = self.videoDeviceInput.device
+            let currentPosition = currentVideoDevice.position
+            
+            let preferredPosition: AVCaptureDevice.Position
+            let preferredDeviceType: AVCaptureDevice.DeviceType
+            
+            switch currentPosition {
+            case .unspecified, .front:
+                preferredPosition = .back
+                preferredDeviceType = .builtInDualCamera
+                
+            case .back:
+                preferredPosition = .front
+                preferredDeviceType = .builtInTrueDepthCamera
+                
+            @unknown default:
+                print("Unknown capture position. Defaulting to back, dual-camera.")
+                preferredPosition = .back
+                preferredDeviceType = .builtInDualCamera
+            }
+            
+            let devices = self.videoDeviceDiscoverySession.devices
+            var newVideoDevice: AVCaptureDevice? = nil
+            
+            // First, seek a device with both the preferred position and device type. Otherwise, seek a device with only the preferred position.
+            if let device = devices.first(where: { $0.position == preferredPosition && $0.deviceType == preferredDeviceType }) {
+                newVideoDevice = device
+            } else if let device = devices.first(where: { $0.position == preferredPosition }) {
+                newVideoDevice = device
+            }
+            
+            if let videoDevice = newVideoDevice {
+                do {
+                    let videoDeviceInput = try AVCaptureDeviceInput(device: videoDevice)
+                    
+                    self.session.beginConfiguration()
+                    self.session.removeInput(self.videoDeviceInput)
+                    
+                    if self.session.canAddInput(videoDeviceInput) {
+                        self.session.addInput(videoDeviceInput)
+                        self.videoDeviceInput = videoDeviceInput
+                    } else {
+                        self.session.addInput(self.videoDeviceInput)
+                    }
+                    
+                    self.session.commitConfiguration()
+                } catch {
+                    print("Error occurred while creating video device input: \(error)")
+                }
+            }
+            
+            DispatchQueue.main.async {
+                self.previewView.previewLayer.connection?.videoOrientation = .portrait
+            }
+        }
+    }
 }
 
 /// AVCaptureVideoDataOutputSampleBufferDelegate

@@ -21,6 +21,10 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kUG-Cp-xT8" userLabel="ModelView" customClass="ModelView" customModule="Ballerinify" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="yUn-dd-z58" appends="YES" id="c01-GJ-d5f"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -58,7 +62,7 @@
                                 <rect key="frame" x="0.0" y="500" width="375" height="167"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EGD-J1-z2j" userLabel="PoseLabelStackView">
-                                        <rect key="frame" x="45" y="14" width="285" height="32.5"/>
+                                        <rect key="frame" x="45" y="14" width="285" height="65"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="calculating position" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3K-mf-y87" userLabel="ArmsPositionLabel">
                                                 <rect key="frame" x="0.0" y="0.0" width="285" height="32.5"/>
@@ -66,20 +70,17 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="calculating leg position" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNF-1j-RQS" userLabel="LegsPositionLabel">
-                                                <rect key="frame" x="0.0" y="0.0" width="285" height="0.0"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="calculating leg position" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNF-1j-RQS" userLabel="LegsPositionLabel">
+                                                <rect key="frame" x="0.0" y="32.5" width="285" height="32.5"/>
                                                 <fontDescription key="fontDescription" name="Optima-BoldItalic" family="Optima" pointSize="27"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="qNF-1j-RQS" secondAttribute="trailing" id="FpJ-nN-4Zc"/>
                                             <constraint firstAttribute="trailing" secondItem="k3K-mf-y87" secondAttribute="trailing" id="MJU-xJ-KIR"/>
                                             <constraint firstItem="k3K-mf-y87" firstAttribute="leading" secondItem="EGD-J1-z2j" secondAttribute="leading" id="Xrx-AL-fFC"/>
                                             <constraint firstItem="k3K-mf-y87" firstAttribute="top" secondItem="EGD-J1-z2j" secondAttribute="top" id="fld-3k-xyd"/>
-                                            <constraint firstItem="qNF-1j-RQS" firstAttribute="top" secondItem="EGD-J1-z2j" secondAttribute="top" id="kED-fC-9ng"/>
-                                            <constraint firstItem="qNF-1j-RQS" firstAttribute="leading" secondItem="EGD-J1-z2j" secondAttribute="leading" id="nFN-xx-Rf9"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -119,9 +120,15 @@
                         <outlet property="feedUnavailableLabel" destination="4hc-FW-dcM" id="x9S-cJ-NqN"/>
                         <outlet property="modelView" destination="kUG-Cp-xT8" id="glG-Ro-b8P"/>
                         <outlet property="previewView" destination="lwh-hH-AWb" id="qcY-gj-rFI"/>
+                        <outlet property="tapRecognizer" destination="yUn-dd-z58" id="UCD-xg-MLn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MIQ-1w-C9K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="yUn-dd-z58">
+                    <connections>
+                        <action selector="tapGestureRecognizer:" destination="qNQ-bB-dAP" id="iIK-FL-7vs"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-255.19999999999999" y="98.50074962518741"/>
         </scene>

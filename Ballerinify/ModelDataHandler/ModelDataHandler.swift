@@ -12,7 +12,7 @@ import Foundation
 import TensorFlowLite
 import UIKit
 
-class ModelDataHandler{
+class ModelDataHandler {
 
     /// TensorFlow Lite `Interpreter` object for performing inference on a given model.
     private var interpreter: Interpreter
@@ -138,9 +138,10 @@ class ModelDataHandler{
     private func preprocess(of pixelBuffer: CVPixelBuffer, from targetSquare: CGRect) -> Data? {
       let sourcePixelFormat = CVPixelBufferGetPixelFormatType(pixelBuffer)
       assert(sourcePixelFormat == kCVPixelFormatType_32BGRA)
-
-      // Resize `targetSquare` of input image to `modelSize`.
+      
+         // Resize `targetSquare` of input image to `modelSize`.
       let modelSize = CGSize(width: Model.input.width, height: Model.input.height)
+
       guard let thumbnail = pixelBuffer.resize(from: targetSquare, to: modelSize)
       else {
         return nil
