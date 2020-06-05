@@ -21,6 +21,10 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kUG-Cp-xT8" userLabel="ModelView" customClass="ModelView" customModule="Ballerinify" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="yUn-dd-z58" appends="YES" id="c01-GJ-d5f"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -116,9 +120,15 @@
                         <outlet property="feedUnavailableLabel" destination="4hc-FW-dcM" id="x9S-cJ-NqN"/>
                         <outlet property="modelView" destination="kUG-Cp-xT8" id="glG-Ro-b8P"/>
                         <outlet property="previewView" destination="lwh-hH-AWb" id="qcY-gj-rFI"/>
+                        <outlet property="tapRecognizer" destination="yUn-dd-z58" id="UCD-xg-MLn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MIQ-1w-C9K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="yUn-dd-z58">
+                    <connections>
+                        <action selector="tapGestureRecognizer:" destination="qNQ-bB-dAP" id="iIK-FL-7vs"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-255.19999999999999" y="98.50074962518741"/>
         </scene>

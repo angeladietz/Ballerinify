@@ -22,7 +22,6 @@ final class ViewController: UIViewController {
     // MARK: ModelDataHandler traits
     @IBOutlet weak var feedUnavailableLabel: UILabel!
     
-    
     // MARK: Result Variables
     // Inferenced data to render.
     private var inferencedData: InferencedData?
@@ -38,12 +37,25 @@ final class ViewController: UIViewController {
     private var previewViewFrame: CGRect?
 
     // MARK: Controllers that manage functionality
-    // Handles all the camera related functionality
-    private lazy var cameraCapture = CameraFeedManager(previewView: previewView)
+    private var usingFrontCamera: Bool = false
+    private lazy var cameraCapture = CameraFeedManager(previewView: previewView, usingFrontCamera: usingFrontCamera)
 
     // Handles all data preprocessing and makes calls to run inference (classify positions).
     private var modelDataHandler: ModelDataHandler?
-//    private var poseClassifier: PoseClassifier? = PoseClassifier()
+
+    @IBOutlet var tapRecognizer: UITapGestureRecognizer!
+    
+    // TODO: resolve issue with camera feed dimensions
+    @IBAction func tapGestureRecognizer(_ sender: UITapGestureRecognizer) {
+        
+        guard sender.view != nil else { return }
+        if sender.state == .ended {
+//            usingFrontCamera = !usingFrontCamera
+//            cameraCapture.usingFrontCamera = usingFrontCamera
+//            cameraCapture.changeCamera()
+        }
+    }
+    
 
     // MARK: View Handling Methods
     override func viewDidLoad() {
@@ -148,6 +160,13 @@ extension ViewController: CameraFeedManagerDelegate {
         let modelInputRange = modelViewFrame.applying(
             modelViewFrame.size.transformKeepAspect(toFitIn: pixelBuffer.size))
         
+        
+//        let rect = CGRect(x: 0.0, y: 420.0, width: 1080.0, height: 1080.0)
+//        if !(rect.equalTo(modelInputRange)){
+//            print("not equal, setting one to the other")
+//            modelInputRange = rect
+//        }
+                
         // Run PoseNet model.
         guard
             let (result, times) = self.modelDataHandler?.runPoseNet(
@@ -176,9 +195,7 @@ extension ViewController: CameraFeedManagerDelegate {
             let bodyPose = poseClassifier!.identifyBodyPosition()
             let armPose = poseClassifier!.identifyArmPosition()
             let legPose = poseClassifier!.identifyLegPosition()
-            print("Body: ", bodyPose)
-            print("Arms: ", armPose)
-            print("Legs: ", legPose)
+
             if bodyPose != "Free movement" {
                 self.LegsPositionLabel.isHidden = true
                 self.ArmsPositionLabel.text = "Position: " + bodyPose
@@ -189,7 +206,7 @@ extension ViewController: CameraFeedManagerDelegate {
                 self.LegsPositionLabel.isHidden = true
                 self.ArmsPositionLabel.text = "Arm Position: " + armPose
             } else if armPose == "Free movement" {
-                self.ArmsPositionLabel.text = ""
+                self.ArmsPositionLabel.text = "    "
                 self.LegsPositionLabel.isHidden = false
                 self.LegsPositionLabel.text = "Leg Position: " + legPose
             } else {
